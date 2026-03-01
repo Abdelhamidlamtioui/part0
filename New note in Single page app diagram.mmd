@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: The user types a note and clicks Save
+    Note right of browser: JS prevents the default page reload, updates the screen, and sends data
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note left of server: The server receives the JSON data and saves the note
+    server-->>browser: HTTP status 201 (Created)
+    deactivate server
+
+    Note right of browser: The browser stays exactly where it is. No further requests are made!
